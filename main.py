@@ -1,10 +1,28 @@
 import pygame
+import random
+import sys
+import os
 
 
-if __name__ == '__main__':
-    pygame.init()
-    size = width, height = 1600, 900
-    screen = pygame.display.set_mode(size)
+pygame.init()
+size = width, height = 1600, 900
+screen = pygame.display.set_mode(size)
+screen.fill((255, 255, 255))
+pygame.display.set_caption("Горнолыжник")
+pygame.display.flip()
 
-    while pygame.event.wait().type != pygame.QUIT:
-        pass
+
+def load_image(name):
+    fullname = os.path.join('data', name)
+    if not os.path.isfile(fullname):
+        sys.exit()
+    image = pygame.image.load(fullname)
+    return image
+
+
+run = True
+while run:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+pygame.quit()
